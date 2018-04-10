@@ -1,6 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
+import styled from 'styled-components'
+import { space } from 'styled-system'
+import { View } from '../components/primitives'
+
+const Heading = styled.div`
+  color: blue;
+  ${space};
+`
 
 export default class IndexPage extends React.Component {
   render() {
@@ -13,6 +21,10 @@ export default class IndexPage extends React.Component {
           <div className="content">
             <h1 className="has-text-weight-bold is-size-2">Latest Stories</h1>
           </div>
+          <Heading mx={3} p={3}>
+            Whatevers
+          </Heading>
+          <View m={[2, 3, 4]}>a view!</View>
           {posts
             .filter(post => post.node.frontmatter.templateKey === 'blog-post')
             .map(({ node: post }) => (
@@ -47,9 +59,9 @@ export default class IndexPage extends React.Component {
 IndexPage.propTypes = {
   data: PropTypes.shape({
     allMarkdownRemark: PropTypes.shape({
-      edges: PropTypes.array,
-    }),
-  }),
+      edges: PropTypes.array
+    })
+  })
 }
 
 export const pageQuery = graphql`
